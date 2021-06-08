@@ -1,11 +1,12 @@
 import React from "react";
 import {minutesToDuration} from "../utils/duration";
 import {secondsToDuration} from "../utils/duration";
-
+import classNames from "../utils/class-names";
 
 
 export default function TimeDisplay(props){
     const{
+      isTimerRunning,
         activeSession,
         modeFocus,
         timerMinutes,
@@ -15,12 +16,12 @@ export default function TimeDisplay(props){
     } = props;
 
     function percentage(currentMinutes, currentSeconds, initialMinutes) {
-        console.log('it works')
         return 100 - (((currentMinutes * 60) + currentSeconds) / (initialMinutes * 60) * 100);
       }
-
-    return(
-        <div style={activeSession ? {display: "block"} : {display: "none"}}>
+ if (activeSession) { 
+    return( 
+         <div>
+           {/* style={{display: activeSession ? "block" : "none"}} */}
         {/*This area should show only when a focus or break session is running or pauses */}
         <div className="row mb-2">
           <div className="col">
@@ -48,4 +49,8 @@ export default function TimeDisplay(props){
         </div>
       </div>
     )
+ }
+
+return null;
 }
+  

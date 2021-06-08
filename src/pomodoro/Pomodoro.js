@@ -47,6 +47,7 @@ function Pomodoro() {
   const [timerMinutes,setTimerMinutes] = useState(25);
   const [disabled, setDisabled] = useState(true)
 
+
 const minFocus = 5;
 const minBreak = 1;
 const maxFocus = 60;
@@ -128,7 +129,10 @@ const maxBreak = 15;
     setIsTimerRunning((prevState) => !prevState);
     if(activeSession === false){
       startSession()
+      
+      
     };
+     
   }
 
   function startSession(){
@@ -136,20 +140,24 @@ const maxBreak = 15;
     setTimerSeconds(0);
     setActiveSession(true);
     setDisabled(false)
+    
   }
 
   function stopSession(){
-    if(activeSession === true){
+    if(!activeSession) return
     setIsTimerRunning(false)
     setActiveSession(false);
     setTimerMinutes(time);
     setTimerSeconds(0);
     setMode(true);
     console.log('click')
-      // setDisabled(true)
-    
-    }
+       setDisabled(true)
   }
+    
+      
+    
+    
+  
   
 
 
@@ -161,7 +169,7 @@ const maxBreak = 15;
       </div>
       <div className="row">
         <div className="col">
-        <PlayPauseStop playPause={playPause} isTimerRunning={isTimerRunning} stopSession={stopSession} disabled={disabled} classNames={classNames}/>
+        <PlayPauseStop playPause={playPause} disabled={disabled} isTimerRunning={isTimerRunning} stopSession={stopSession} classNames={classNames}/>
         </div>
       </div>
        <TimeDisplay 
@@ -171,6 +179,7 @@ const maxBreak = 15;
       timerSeconds={timerSeconds} 
       time={time} 
       breakTime={breakTime}/>
+      
     </div>
   );
 }

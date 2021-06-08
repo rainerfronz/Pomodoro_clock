@@ -3,6 +3,7 @@ import React from "react";
 export default function PlayPauseStop(props){
 
     const{
+      hide,
       disabled,
         playPause,
         isTimerRunning,
@@ -21,7 +22,9 @@ export default function PlayPauseStop(props){
           className="btn btn-primary"
           data-testid="play-pause"
           title="Start or pause timer"
+          hide={hide}
           onClick={playPause}
+          
         >
           <span
             className={classNames({
@@ -39,6 +42,7 @@ export default function PlayPauseStop(props){
           data-testid="stop"
           title="Stop the session"
           onClick={stopSession}
+        
         >
           <span className="oi oi-media-stop" />
         </button>
